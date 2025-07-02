@@ -1,9 +1,9 @@
 /// Converts celsius to fahrenheit
-/// 
+///
 /// # Examples
 /// ```
 /// use rust_utils::values_and_conversions::temperature_converter::from_celsius_to_fahrenheit;
-/// 
+///
 /// let fahrenheit = from_celsius_to_fahrenheit(0.0);
 /// assert_eq!(fahrenheit, 32.0);
 /// ```
@@ -12,11 +12,11 @@ pub fn from_celsius_to_fahrenheit(celsius: f64) -> f64 {
 }
 
 /// Converts fahrenheit to celsius
-/// 
+///
 /// # Examples
 /// ```
 /// use rust_utils::values_and_conversions::temperature_converter::from_fahrenheit_to_celsius;
-/// 
+///
 /// let celsius = from_fahrenheit_to_celsius(32.0);
 /// assert_eq!(celsius, 0.0);
 /// ```
@@ -25,11 +25,11 @@ pub fn from_fahrenheit_to_celsius(fahrenheit: f64) -> f64 {
 }
 
 /// Converts celsius to kelvin
-/// 
+///
 /// # Examples
 /// ```
 /// use rust_utils::values_and_conversions::temperature_converter::from_celsius_to_kelvin;
-/// 
+///
 /// let kelvin = from_celsius_to_kelvin(0.0);
 /// assert_eq!(kelvin, 273.15);
 /// ```
@@ -38,11 +38,11 @@ pub fn from_celsius_to_kelvin(celsius: f64) -> f64 {
 }
 
 /// Converts kelvin to celsius
-/// 
+///
 /// # Examples
 /// ```
 /// use rust_utils::values_and_conversions::temperature_converter::from_kelvin_to_celsius;
-/// 
+///
 /// let celsius = from_kelvin_to_celsius(273.15);
 /// assert_eq!(celsius, 0.0);
 /// ```
@@ -55,7 +55,7 @@ pub fn from_kelvin_to_celsius(kelvin: f64) -> f64 {
 /// # Examples
 /// ```
 /// use rust_utils::values_and_conversions::temperature_converter::from_fahrenheit_to_kelvin;
-/// 
+///
 /// let kelvin = from_fahrenheit_to_kelvin(32.0);
 /// assert_eq!(kelvin, 273.15);
 /// ```
@@ -64,11 +64,11 @@ pub fn from_fahrenheit_to_kelvin(fahrenheit: f64) -> f64 {
 }
 
 /// Converts kelvin to fahrenheit
-/// 
+///
 /// # Examples
 /// ```
 /// use rust_utils::values_and_conversions::temperature_converter::from_kelvin_to_fahrenheit;
-/// 
+///
 /// let fahrenheit = from_kelvin_to_fahrenheit(273.15);
 /// assert_eq!(fahrenheit, 32.0);
 /// ```
