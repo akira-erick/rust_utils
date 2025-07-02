@@ -1,3 +1,15 @@
+/// Converts normalized strings to camel case.
+///
+/// # Examples
+/// ```
+/// use rust_utils::strings::camel_case_converter::to_camel_case;
+///
+/// let from_snake_case = to_camel_case("hello_world");
+/// assert_eq!(from_snake_case, "helloWorld");
+///
+/// let from_normal = to_camel_case("hello world");
+/// assert_eq!(from_normal, "helloWorld");
+/// ```
 pub fn to_camel_case(input: &str) -> String {
     let mut result = String::new();
     let mut capitalize_next = false;
