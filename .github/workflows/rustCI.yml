@@ -30,7 +30,7 @@ jobs:
           components: rustfmt
       - name: Rustfmt Check
         uses: actions-rust-lang/rustfmt@v1
-      - run: cargo fmt --all-features
+      - run: cargo fmt --all
 
   clippy:
     name: cargo clippy
