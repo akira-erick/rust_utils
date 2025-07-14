@@ -4,3 +4,4 @@
 
 /// This module provides a function to convert string to camel case.
 pub mod camel_case_converter;
+pub mod roman_number_converter;
