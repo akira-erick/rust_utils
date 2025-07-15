@@ -42,10 +42,47 @@ mod tests {
     use super::*;
 
     #[test]
-    fn should_convert_string_to_int() {
+    fn test_error_when_not_roman_number() {
+        assert_eq!(
+            roman_number_to_int("XQI"),
+            Err("String with a character that are not a roman digit number.")
+        );
+    }
+
+    #[test]
+    fn test_single_digit() {
         assert_eq!(roman_number_to_int("X").unwrap(), 10);
+        assert_eq!(roman_number_to_int("V").unwrap(), 5);
+        assert_eq!(roman_number_to_int("I").unwrap(), 1);
+        assert_eq!(roman_number_to_int("L").unwrap(), 50);
+        assert_eq!(roman_number_to_int("C").unwrap(), 100);
+        assert_eq!(roman_number_to_int("D").unwrap(), 500);
+        assert_eq!(roman_number_to_int("M").unwrap(), 1000);
+    }
+
+    #[test]
+    fn test_addition() {
         assert_eq!(roman_number_to_int("XII").unwrap(), 12);
+        assert_eq!(roman_number_to_int("VI").unwrap(), 6);
+        assert_eq!(roman_number_to_int("III").unwrap(), 3);
+        assert_eq!(roman_number_to_int("LV").unwrap(), 55);
+        assert_eq!(roman_number_to_int("CC").unwrap(), 200);
+        assert_eq!(roman_number_to_int("DV").unwrap(), 505);
+        assert_eq!(roman_number_to_int("MII").unwrap(), 1002);
+    }
+
+    #[test]
+    fn test_subtraction() {
         assert_eq!(roman_number_to_int("IX").unwrap(), 9);
+        assert_eq!(roman_number_to_int("IV").unwrap(), 4);
+        assert_eq!(roman_number_to_int("XL").unwrap(), 40);
+        assert_eq!(roman_number_to_int("XC").unwrap(), 90);
+        assert_eq!(roman_number_to_int("CD").unwrap(), 400);
+        assert_eq!(roman_number_to_int("CM").unwrap(), 900);
+    }
+
+    #[test]
+    fn test_multiple_actions() {
         assert_eq!(roman_number_to_int("MDCLXVI").unwrap(), 1666);
         assert_eq!(roman_number_to_int("MMMCMXCIX").unwrap(), 3999);
     }
