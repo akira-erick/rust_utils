@@ -24,7 +24,7 @@ pub fn to_camel_case(input: &str) -> String {
             }
         }
 
-        if c == '_' || c.is_whitespace() || c == '-' {
+        if c.is_whitespace() || c == '_' || c == '-' {
             capitalize_next = true;
         } else if capitalize_next {
             result.push(c.to_ascii_uppercase());
@@ -64,5 +64,12 @@ mod tests {
         assert_eq!(to_camel_case("hello-world"), "helloWorld");
         assert_eq!(to_camel_case("this-is-a-test"), "thisIsATest");
         assert_eq!(to_camel_case("leading-space"), "leadingSpace");
+    }
+
+    #[test]
+    fn test_first_letter_upper_case () {
+        assert_eq!(to_camel_case("Snake_case"), "snakeCase");
+        assert_eq!(to_camel_case("Kebab-case"), "kebabCase");
+        assert_eq!(to_camel_case("Nomal case"), "normalCase");
     }
 }
