@@ -1,21 +1,64 @@
-/// Converts normalized strings to camel case.
+/// Converts a string from `snake_case`, `kebab-case`, or `space separated`
+/// to `camelCase`.
+///
+/// This function handles common delimiters like underscores (`_`), hyphens (`-`),
+/// and whitespace, converting the character immediately following a delimiter
+/// to uppercase, and removing the delimiter itself. The very first character
+/// of the output string will be lowercase.
 ///
 /// # Examples
+///
+/// Basic conversions:
 /// ```
 /// use rust_utils::strings::camel_case_converter::to_camel_case;
 ///
-/// let from_snake_case = to_camel_case("hello_world");
-/// assert_eq!(from_snake_case, "helloWorld");
-///
-/// let from_normal = to_camel_case("hello world");
-/// assert_eq!(from_normal, "helloWorld");
+/// assert_eq!(to_camel_case("snake_case"), "snakeCase");
+/// assert_eq!(to_camel_case("kebab-case"), "kebabCase");
+/// assert_eq!(to_camel_case("normal case"), "normalCase");
 /// ```
-pub fn to_camel_case(input: &str) -> String {
+///
+/// Handling leading/trailing delimiters and multiple delimiters:
+/// ```
+/// use rust_utils::strings::camel_case_converter::to_camel_case;
+///
+/// assert_eq!(to_camel_case("_leading_underscore"), "leadingUnderscore");
+/// assert_eq!(to_camel_case("trailing_underscore_"), "trailingUnderscore");
+/// assert_eq!(to_camel_case("  multiple   spaces  "), "multipleSpaces");
+/// assert_eq!(to_camel_case("multiple__underscores"), "multipleUnderscores");
+/// ```
+///
+/// Empty and single-word strings:
+/// ```
+/// use rust_utils::strings::camel_case_converter::to_camel_case;
+///
+/// assert_eq!(to_camel_case(""), "");
+/// assert_eq!(to_camel_case("singleword"), "singleword");
+/// assert_eq!(to_camel_case(" SingleWord "), "singleWord");
+/// ```
+///
+/// # Arguments
+///
+/// * `s` - The string slice to convert. This can be in `snake_case`,
+///   `kebab-case`, `space separated`, or any combination of these delimiters.
+///
+/// # Returns
+///
+/// A new `String` representing the camel-cased version of the input.
+///
+/// # Behavior Notes
+///
+/// * The very first character of the output string will always be lowercase,
+///   even if the input string starts with an uppercase letter (e.g., "HelloWorld" becomes "helloWorld").
+/// * Consecutive delimiters (e.g., `__`, `--`, `  `) are treated as a single delimiter.
+/// * Leading and trailing delimiters are ignored.
+/// * Non-alphanumeric characters that are not delimiters are included as-is.
+///
+pub fn to_camel_case(s: &str) -> String {
     let mut result = String::new();
     let mut capitalize_next = false;
     let mut first_char_processed = false;
 
-    for c in input.chars() {
+    for c in s.chars() {
         if c == '_' || c == '-' || c.is_whitespace() {
             capitalize_next = true;
             continue;
