@@ -58,4 +58,11 @@ mod tests {
         assert_eq!(to_camel_case("trailing space "), "trailingSpace");
         assert_eq!(to_camel_case(" multiple   spaces "), "multipleSpaces");
     }
+
+    #[test]
+    fn test_camel_case_from_kebab_case() {
+        assert_eq!(to_camel_case("hello-world"), "helloWorld");
+        assert_eq!(to_camel_case("this-is-a-test"), "thisIsATest");
+        assert_eq!(to_camel_case("leading-space"), "leadingSpace");
+    }
 }
