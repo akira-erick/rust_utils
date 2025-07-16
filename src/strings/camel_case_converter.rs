@@ -13,19 +13,18 @@
 pub fn to_camel_case(input: &str) -> String {
     let mut result = String::new();
     let mut capitalize_next = false;
-    let mut first_char = true;
+    let mut first_char_processed = false;
 
     for c in input.chars() {
-        if first_char {
-            if c.is_whitespace() || c == '_' || c == '-' {
-                continue;
-            } else {
-                first_char = false;
-            }
+        if c == '_' || c == '-' || c.is_whitespace() {
+            capitalize_next = true;
+            continue;
         }
 
-        if c.is_whitespace() || c == '_' || c == '-' {
-            capitalize_next = true;
+        if !first_char_processed {
+            result.push(c.to_ascii_lowercase());
+            first_char_processed = true;
+            capitalize_next = false;
         } else if capitalize_next {
             result.push(c.to_ascii_uppercase());
             capitalize_next = false;
@@ -67,9 +66,9 @@ mod tests {
     }
 
     #[test]
-    fn test_first_letter_upper_case () {
+    fn test_first_letter_upper_case() {
         assert_eq!(to_camel_case("Snake_case"), "snakeCase");
         assert_eq!(to_camel_case("Kebab-case"), "kebabCase");
-        assert_eq!(to_camel_case("Nomal case"), "normalCase");
+        assert_eq!(to_camel_case("Normal case"), "normalCase");
     }
 }
