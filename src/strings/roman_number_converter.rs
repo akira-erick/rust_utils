@@ -1,6 +1,38 @@
-pub fn roman_number_to_int(input: &str) -> Result<i32, &str> {
+/// Converts a string containing an roman number to it's respective value.
+///
+/// This function calculates the value of roman numbers formed by the characters: I, V,
+/// X, L, C, D and M. Checking each relation from the character and number it represents
+/// and then subtracting or adding it's value to the total.
+/// The return can be an error, because `s` can be an invalid roman number.
+///
+/// # Examples
+///
+/// ```
+/// use rust_utils::strings::roma_number_converter::roman_number_to_int;
+///
+/// assert_eq!(roman_number_to_int("XII").unwrap(), 12);
+/// assert_eq!(roman_number_to_int("MDCLXVI").unwrap(), 1666);
+/// assert_eq!(roman_number_to_int("MMMCMXCIX").unwrap(), 3999);
+/// ```
+///
+/// # Arguments
+///
+/// * `s` - The string slice to convert. The roman number have to contain some of
+///   the characters: I, V, X, L, C, D and M.
+///
+/// # Returns
+///
+/// An integer (` i32 `) with the respective value from the input.
+///
+/// # Behavior Notes
+///
+/// * The implemented characters are I, V, X, L, C, D and M.
+/// * Empty strings will have an error return.
+/// * This function also validades if the string is a roman number.
+///
+pub fn roman_number_to_int(s: &str) -> Result<i32, &str> {
     use std::collections::HashMap;
-    if input.is_empty() {
+    if s.is_empty() {
         return Err("String shouldn't be empty");
     }
     //more validations
@@ -14,7 +46,7 @@ pub fn roman_number_to_int(input: &str) -> Result<i32, &str> {
         ('M', 1000),
     ]);
     let mut total = 0;
-    let mut char_iter = input.chars().peekable();
+    let mut char_iter = s.chars().peekable();
     while let Some(current_char) = char_iter.next() {
         let current = *map
             .get(&current_char)
