@@ -7,5 +7,4 @@
 //!
 //! [`temperature_converter`]: crate::values_and_conversions::temperature_converter
 
-/// This module provides functions for converting between different temperature scales.
 pub mod temperature_converter;
