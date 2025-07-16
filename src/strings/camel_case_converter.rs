@@ -17,14 +17,14 @@ pub fn to_camel_case(input: &str) -> String {
 
     for c in input.chars() {
         if first_char {
-            if c.is_whitespace() || c == '_' {
+            if c.is_whitespace() || c == '_' || c == '-' {
                 continue;
             } else {
                 first_char = false;
             }
         }
 
-        if c == '_' || c.is_whitespace() {
+        if c == '_' || c.is_whitespace() || c == '-' {
             capitalize_next = true;
         } else if capitalize_next {
             result.push(c.to_ascii_uppercase());
