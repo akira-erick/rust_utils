@@ -49,13 +49,11 @@ pub fn roman_number_to_int(s: &str) -> Result<i32, String> {
     let mut char_iter = s.trim().chars().peekable();
     while let Some(current_char) = char_iter.next() {
         let current = *map.get(&current_char).ok_or(format!(
-            "String with the character {} is not a roman digit number.",
-            current_char
+            "String with the character {current_char} is not a roman digit number."
         ))?;
         if let Some(&next_char) = char_iter.peek() {
             let next = *map.get(&next_char).ok_or(format!(
-                "String with the character {} is not a roman digit number.",
-                &next_char
+                "String with the character {next_char} is not a roman digit number."
             ))?;
             if current < next {
                 total += next - current;
