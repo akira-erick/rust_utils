@@ -32,7 +32,7 @@
 ///
 pub fn roman_number_to_int(s: &str) -> Result<i32, String> {
     use std::collections::HashMap;
-    if s.is_empty() {
+    if s.trim().is_empty() {
         return Err("String shouldn't be empty".to_string());
     }
     //more validations
@@ -46,7 +46,7 @@ pub fn roman_number_to_int(s: &str) -> Result<i32, String> {
         ('M', 1000),
     ]);
     let mut total = 0;
-    let mut char_iter = s.chars().peekable();
+    let mut char_iter = s.trim().chars().peekable();
     while let Some(current_char) = char_iter.next() {
         let current = *map.get(&current_char).ok_or(format!(
             "String with the character {} is not a roman digit number.",
