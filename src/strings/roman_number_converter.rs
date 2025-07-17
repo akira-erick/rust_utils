@@ -8,7 +8,7 @@
 /// # Examples
 ///
 /// ```
-/// use rust_utils::strings::roma_number_converter::roman_number_to_int;
+/// use rust_utils::strings::roman_number_converter::roman_number_to_int;
 ///
 /// assert_eq!(roman_number_to_int("XII").unwrap(), 12);
 /// assert_eq!(roman_number_to_int("MDCLXVI").unwrap(), 1666);
@@ -30,10 +30,10 @@
 /// * Empty strings will have an error return.
 /// * This function also validades if the string is a roman number.
 ///
-pub fn roman_number_to_int(s: &str) -> Result<i32, &str> {
+pub fn roman_number_to_int(s: &str) -> Result<i32, String> {
     use std::collections::HashMap;
     if s.is_empty() {
-        return Err("String shouldn't be empty");
+        return Err("String shouldn't be empty".to_string());
     }
     //more validations
     let map = HashMap::<char, i32>::from([
@@ -48,13 +48,15 @@ pub fn roman_number_to_int(s: &str) -> Result<i32, &str> {
     let mut total = 0;
     let mut char_iter = s.chars().peekable();
     while let Some(current_char) = char_iter.next() {
-        let current = *map
-            .get(&current_char)
-            .ok_or("String with a character that are not a roman digit number.")?;
+        let current = *map.get(&current_char).ok_or(format!(
+            "String with the character {} is not a roman digit number.",
+            current_char
+        ))?;
         if let Some(&next_char) = char_iter.peek() {
-            let next = *map
-                .get(&next_char)
-                .ok_or("String with a character that are not a roman digit number.")?;
+            let next = *map.get(&next_char).ok_or(format!(
+                "String with the character {} is not a roman digit number.",
+                &next_char
+            ))?;
             if current < next {
                 total += next - current;
                 char_iter.next();
@@ -77,7 +79,7 @@ mod tests {
     fn test_error_when_not_roman_number() {
         assert_eq!(
             roman_number_to_int("XQI"),
-            Err("String with a character that are not a roman digit number.")
+            Err("String with the character Q is not a roman digit number.".to_string())
         );
     }
 
