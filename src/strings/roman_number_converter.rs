@@ -84,6 +84,18 @@ mod tests {
     }
 
     #[test]
+    fn test_error_when_empty_string() {
+        assert_eq!(
+            roman_number_to_int(""),
+            Err("String shouldn't be empty".to_string())
+        );
+        assert_eq!(
+            roman_number_to_int("     "),
+            Err("String shouldn't be empty".to_string())
+        );
+    }
+
+    #[test]
     fn test_single_digit() {
         assert_eq!(roman_number_to_int("X").unwrap(), 10);
         assert_eq!(roman_number_to_int("V").unwrap(), 5);
