@@ -94,6 +94,22 @@ mod tests {
     }
 
     #[test]
+    fn test_error_when_invalid_roman_syntax() {
+        assert_eq!(
+            roman_number_to_int("IIII"),
+            Err("Wrong roman number syntax".to_string())
+        );
+        assert_eq!(
+            roman_number_to_int("IC"),
+            Err("Wrong roman number syntax".to_string())
+        );
+        assert_eq!(
+            roman_number_to_int("VV"),
+            Err("Wrong roman number syntax".to_string())
+        );
+    }
+
+    #[test]
     fn test_single_digit() {
         assert_eq!(roman_number_to_int("X").unwrap(), 10);
         assert_eq!(roman_number_to_int("V").unwrap(), 5);
