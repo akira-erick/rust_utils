@@ -69,6 +69,40 @@ pub fn roman_number_to_int(s: &str) -> Result<i32, String> {
     Ok(total)
 }
 
+fn validate_roman_number(s: &str) -> bool {
+    if s.trim().is_empty() {
+        return false;
+    }
+    use std::collections::HashMap;
+    let map = HashMap::<char, i32>::from([
+        ('I', 1),
+        ('V', 5),
+        ('X', 10),
+        ('L', 50),
+        ('C', 100),
+        ('D', 500),
+        ('M', 1000),
+    ]);
+    let mut char_iter = s.trim().chars().peekable();
+    let mut times: i32;
+    while let Some(current_char) = char_iter.next() {
+        let current = if let Some(&current) = map.get(&current_char) {
+            current
+        } else {
+            return false;
+        };
+        if let Some(&next_char) = char_iter.peek() {
+            let next = if let Some(&next) = map.get(&next_char) {
+                next
+            } else {
+                return false;
+            };
+        }
+    }
+
+    false
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
