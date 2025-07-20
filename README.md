@@ -1,11 +1,16 @@
 # rust_utils
 
-This crate provides utility functions for various ocasions.
+This crate provides a collection of handy utility functions designed to simplify common tasks across various scenarios in your Rust projects. From manipulating strings to handling value conversions, ```rust_utils``` aims to be a reliable toolkit.
+
+## Features
+
+- String Manipulation: Efficient functions for common string operations (e.g., formatting, parsing, transformation).
+- Value & Conversions: Utilities for type conversions and value handling.
 
 ## Modules
 
-- Strings
-- Values and conversions
+- ```strings```: A module dedicated to various string-related utilities.
+- ```values_and_conversions```: Contains functions for seamless value manipulation and type conversions.
 
 ## Run documentation
 
